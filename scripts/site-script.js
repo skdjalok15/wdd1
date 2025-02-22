@@ -21,48 +21,64 @@ products.forEach(product => {
   productList.appendChild(li);
 });
 
-// Quiz Functionality
+// Quiz Data (Questions and Answers)
 const quizData = [
   {
-    question: "What is an eco-friendly alternative to plastic straws?",
-    options: ["Glass", "Bamboo", "Metal", "All of the above"],
-    correct: "All of the above"
+    question: "Which of these is the best way to reduce plastic waste?",
+    options: ["Using plastic bags", "Buying bottled water", "Using reusable containers"],
+    correct: 2
   },
   {
-    question: "What can you do to reduce single-use plastic waste?",
-    options: ["Use reusable bags", "Buy plastic bottles", "Use disposable cutlery", "None of the above"],
-    correct: "Use reusable bags"
+    question: "What is an example of an eco-friendly product?",
+    options: ["Plastic straws", "Bamboo toothbrush", "Single-use cutlery"],
+    correct: 1
   },
   {
-    question: "Which material is biodegradable?",
-    options: ["Plastic", "Styrofoam", "Paper", "Aluminum"],
-    correct: "Paper"
+    question: "What is composting used for?",
+    options: ["Recycling plastic", "Turning food waste into soil", "Cleaning oceans"],
+    correct: 1
   }
 ];
 
-const quizContainer = document.getElementById('quiz');
-quizData.forEach((q, index) => {
-  const div = document.createElement('div');
-  div.classList.add('quiz-question');
-  div.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
-  
-  q.options.forEach(option => {
-    const label = document.createElement('label');
-    label.innerHTML = `<input type="radio" name="q${index}" value="${option}"> ${option}`;
-    div.appendChild(label);
-  });
-  
-  quizContainer.appendChild(div);
-});
+// Function to Generate Quiz
+function loadQuiz() {
+  const quizContainer = document.getElementById('quiz-container');
+  quizContainer.innerHTML = '';
 
-document.getElementById('submitQuiz').addEventListener('click', function() {
-  let score = 0;
   quizData.forEach((q, index) => {
-    const selected = document.querySelector(`input[name="q${index}"]:checked`);
-    if (selected && selected.value === q.correct) {
+    const questionDiv = document.createElement('div');
+    questionDiv.classList.add('quiz-question');
+    questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+
+    const optionsDiv = document.createElement('div');
+    optionsDiv.classList.add('quiz-options');
+
+    q.options.forEach((option, i) => {
+      const label = document.createElement('label');
+      label.innerHTML = `<input type="radio" name="question${index}" value="${i}"> ${option}`;
+      optionsDiv.appendChild(label);
+    });
+
+    questionDiv.appendChild(optionsDiv);
+    quizContainer.appendChild(questionDiv);
+  });
+}
+
+// Function to Check Answers
+document.getElementById('submitQuiz').addEventListener('click', function () {
+  let score = 0;
+
+  quizData.forEach((q, index) => {
+    const selected = document.querySelector(`input[name="question${index}"]:checked`);
+    if (selected && parseInt(selected.value) === q.correct) {
       score++;
     }
   });
 
-  document.getElementById('quizResult').textContent = `You scored ${score} out of ${quizData.length}!`;
+  const resultText = `You scored ${score} out of ${quizData.length}!`;
+  document.getElementById('quiz-result').textContent = resultText;
 });
+
+// Load quiz when the page loads
+window.onload = loadQuiz;
+
