@@ -2,49 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="BYUI Mission Statement Activity">
-    <meta name="author" content="Your Name">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mission Statement</title>
-    <!-- Link to CSS -->
+    <title>Eco Living - Home</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Link to JavaScript -->
-    <script src="mission.js" defer></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <header>
-            <h1>MISSION STATEMENT</h1>
-            <h2>BRIGHAM YOUNG UNIVERSITY-IDAHO</h2>
-        </header>
+    <header>
+        <img src="images/logo.png" alt="Eco Living Logo" class="logo">
+        <h1>Welcome to Eco Living</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tips.html">Sustainable Living Tips</a></li>
+                <li><a href="products.html">Eco-Friendly Products</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Theme Selector -->
-        <label for="theme-selector">Choose Theme: </label>
-        <select id="theme-selector">
-            <option value="light">Light Theme</option>
-            <option value="dark">Dark Theme</option>
-        </select>
+    <section>
+        <h2>Why Sustainable Living?</h2>
+        <p>Sustainable living helps reduce environmental impact, promotes healthier living, and conserves natural resources.</p>
+        <img src="images/sustainability.jpg" alt="Sustainability">
+    </section>
 
-        <!-- Main Content Section -->
-        <main>
-            <p>
-                Brigham Young University-Idaho was founded and is supported and guided by The Church of Jesus Christ of Latter-day Saints.
-                Its mission is to develop disciples of Jesus Christ who are leaders in their homes, the Church, and their communities.
-            </p>
-            <p><em>The university does this by:</em></p>
-            <ol>
-                <li>Building testimonies of the restored gospel of Jesus Christ and fostering its principles in a wholesome academic, cultural, and social environment.</li>
-                <li>Providing a high-quality education that prepares students of diverse interests and abilities for lifelong learning and employment.</li>
-                <li>Serving as many students as possible within resource constraints.</li>
-                <li>Delivering education that is affordable for students and the Church.</li>
-            </ol>
-        </main>
-
-        <!-- Footer Section -->
-        <footer>
-            <img id="logo" src="byui-logo-blue.png" alt="BYU-Idaho Logo">
-        </footer>
-    </div>
+    <section>
+        <h2>Take Our Eco Quiz!</h2>
+        <p id="question">Loading...</p>
+        <div class="quiz-options">
+            <button id="option1" class="quiz-btn"></button>
+            <button id="option2" class="quiz-btn"></button>
+            <button id="option3" class="quiz-btn"></button>
+        </div>
+        <p id="result"></p>
+        <img id="quiz-image" src="images/quiz-placeholder.jpg" alt="Quiz Image" class="quiz-image">
+    </section>
 </body>
 </html>
