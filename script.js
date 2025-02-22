@@ -1,41 +1,66 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Sustainability Tips
-    const tips = [
-        "Reduce, reuse, recycle – minimize waste and extend product life.",
-        "Choose eco-friendly products like bamboo toothbrushes and reusable bags.",
-        "Support green businesses that prioritize sustainability.",
-        "Conserve water by fixing leaks and using water-efficient appliances.",
-        "Grow your own food to reduce carbon footprint."
+    // Quiz Questions Array
+    const quizData = [
+        {
+            question: "Which of the following is a renewable energy source?",
+            options: ["Coal", "Solar", "Plastic"],
+            answer: "Solar",
+            image: "images/solar.jpg"
+        },
+        {
+            question: "What is the best way to reduce plastic waste?",
+            options: ["Recycle", "Burn it", "Throw it away"],
+            answer: "Recycle",
+            image: "images/recycle.jpg"
+        },
+        {
+            question: "Which of these products is biodegradable?",
+            options: ["Glass", "Banana Peel", "Aluminum Can"],
+            answer: "Banana Peel",
+            image: "images/biodegradable.jpg"
+        }
     ];
 
-    const tipsList = document.getElementById("tips-list");
-    if (tipsList) {
-        tips.forEach(tip => {
-            let li = document.createElement("li");
-            li.textContent = tip;
-            tipsList.appendChild(li);
+    let currentQuestionIndex = 0;
+
+    // DOM Elements
+    const questionText = document.getElementById("question");
+    const options = document.querySelectorAll(".quiz-btn");
+    const resultText = document.getElementById("result");
+    const quizImage = document.getElementById("quiz-image");
+
+    // Function to Load a Question
+    function loadQuestion() {
+        let currentQuestion = quizData[currentQuestionIndex];
+        questionText.textContent = currentQuestion.question;
+        quizImage.src = currentQuestion.image;
+
+        options.forEach((button, index) => {
+            button.textContent = currentQuestion.options[index];
+            button.onclick = function () {
+                checkAnswer(currentQuestion.options[index], currentQuestion.answer);
+            };
         });
     }
 
-    // Quiz
-    const quizData = {
-        question: "What is the best way to reduce plastic waste?",
-        options: ["Use reusable bags", "Throw plastic in trash", "Burn plastic"],
-        correct: 0,
-        image: "images/reusable-bags.jpg"
-    };
+    // Function to Check Answer
+    function checkAnswer(selected, correct) {
+        if (selected === correct) {
+            resultText.textContent = "✅ Correct! Well done!";
+            resultText.style.color = "green";
+        } else {
+            resultText.textContent = "❌ Incorrect! Try again.";
+            resultText.style.color = "red";
+        }
 
-    document.getElementById("question").textContent = quizData.question;
-    ["option1", "option2", "option3"].forEach((id, index) => {
-        let btn = document.getElementById(id);
-        btn.textContent = quizData.options[index];
-        btn.addEventListener("click", function () {
-            if (index === quizData.correct) {
-                document.getElementById("result").textContent = "Correct!";
-                document.getElementById("quiz-image").src = quizData.image;
-            } else {
-                document.getElementById("result").textContent = "Try again!";
-            }
-        });
-    });
+        // Load Next Question after 2 Seconds
+        setTimeout(() => {
+            currentQuestionIndex = (currentQuestionIndex + 1) % quizData.length;
+            loadQuestion();
+            resultText.textContent = ""; // Clear result
+        }, 2000);
+    }
+
+    // Load First Question on Page Load
+    loadQuestion();
 });
