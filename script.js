@@ -37,21 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         options.forEach((button, index) => {
             button.textContent = currentQuestion.options[index];
-            button.onclick = function () {
-                checkAnswer(currentQuestion.options[index], currentQuestion.answer);
-            };
+            button.onclick = () => checkAnswer(currentQuestion.options[index], currentQuestion.answer);
         });
     }
 
     // Function to Check Answer
     function checkAnswer(selected, correct) {
-        if (selected === correct) {
-            resultText.textContent = "✅ Correct! Well done!";
-            resultText.style.color = "green";
-        } else {
-            resultText.textContent = "❌ Incorrect! Try again.";
-            resultText.style.color = "red";
-        }
+        resultText.textContent = selected === correct ? "✅ Correct! Well done!" : "❌ Incorrect! Try again.";
+        resultText.style.color = selected === correct ? "green" : "red";
 
         // Load Next Question after 2 Seconds
         setTimeout(() => {
