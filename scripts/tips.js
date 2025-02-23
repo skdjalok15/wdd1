@@ -1,13 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
     const tips = [
-        { text: "Reduce plastic use – Carry reusable bags.", image: "images/reusable-bags.jpg" },
-        { text: "Conserve water – Turn off taps.", image: "images/water-saving.jpg" },
-        { text: "Grow your own food.", image: "images/home-garden.jpg" },
-        { text: "Use renewable energy.", image: "images/solar-panels.jpg" },
-        { text: "Unplug unused devices.", image: "images/energy-saving.jpg" },
-        { text: "Use public transport or cycle.", image: "images/bicycle.jpg" },
-        { text: "Compost food waste.", image: "images/compost-bin.jpg" },
-        { text: "Buy second-hand or sustainable products.", image: "images/eco-shopping.jpg" }
+        { 
+            text: "Reduce plastic use – Carry reusable bags.", 
+            image: "images/reusable-bags.jpg",
+            description: "Plastic bags take hundreds of years to decompose and contribute to pollution. Switching to reusable bags helps reduce plastic waste and environmental damage."
+        },
+        { 
+            text: "Conserve water – Turn off taps.", 
+            image: "images/water-saving.jpg",
+            description: "Turning off taps while brushing or washing dishes can save gallons of water daily. Water conservation helps protect ecosystems and ensures clean water for future generations."
+        },
+        { 
+            text: "Grow your own food.", 
+            image: "images/home-garden.jpg",
+            description: "Home gardening reduces reliance on packaged and processed foods, promotes healthier eating, and lowers carbon emissions from food transportation."
+        },
+        { 
+            text: "Use renewable energy.", 
+            image: "images/solar-panels.jpg",
+            description: "Switching to renewable energy sources like solar and wind reduces dependence on fossil fuels, cuts greenhouse gas emissions, and saves money in the long run."
+        },
+        { 
+            text: "Unplug unused devices.", 
+            image: "images/energy-saving.jpg",
+            description: "Electronics continue to consume power even when turned off. Unplugging them or using a smart power strip can reduce energy waste and lower electricity bills."
+        },
+        { 
+            text: "Use public transport or cycle.", 
+            image: "images/bicycle.jpg",
+            description: "Using public transportation or cycling instead of driving reduces air pollution, traffic congestion, and carbon footprints while promoting a healthier lifestyle."
+        },
+        { 
+            text: "Compost food waste.", 
+            image: "images/compost-bin.jpg",
+            description: "Composting converts food scraps into nutrient-rich soil, reducing landfill waste and supporting sustainable agriculture."
+        },
+        { 
+            text: "Buy second-hand or sustainable products.", 
+            image: "images/eco-shopping.jpg",
+            description: "Choosing second-hand or eco-friendly products reduces demand for new resources, minimizes waste, and promotes sustainable consumer habits."
+        },
+        { 
+            text: "Use energy-efficient appliances.", 
+            image: "images/energy-efficient.jpg",
+            description: "Energy-efficient appliances consume less power, reduce utility bills, and contribute to a greener environment."
+        },
+        { 
+            text: "Support local and organic products.", 
+            image: "images/local-market.jpg",
+            description: "Buying locally reduces carbon emissions from transportation, supports small businesses, and ensures fresher, pesticide-free food."
+        },
+        { 
+            text: "Reduce meat consumption.", 
+            image: "images/plant-based.jpg",
+            description: "Reducing meat consumption lowers carbon emissions, decreases deforestation, and promotes better personal health."
+        }
     ];
 
     // Random Tip Generator
@@ -15,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const randomIndex = Math.floor(Math.random() * tips.length);
         document.getElementById("random-tip").textContent = tips[randomIndex].text;
         document.getElementById("tip-image").src = tips[randomIndex].image;
+        document.getElementById("tip-description").textContent = tips[randomIndex].description;
     });
 
     // Quiz Section
@@ -28,6 +76,21 @@ document.addEventListener("DOMContentLoaded", () => {
             question: "Which energy source is renewable?",
             options: ["Coal", "Solar", "Gasoline"],
             answer: "Solar"
+        },
+        {
+            question: "Why is composting beneficial?",
+            options: ["It reduces food waste", "It increases plastic waste", "It pollutes water"],
+            answer: "It reduces food waste"
+        },
+        {
+            question: "Which transportation method has the lowest carbon footprint?",
+            options: ["Driving alone", "Taking the bus", "Cycling"],
+            answer: "Cycling"
+        },
+        {
+            question: "What can you do to save electricity?",
+            options: ["Leave lights on all day", "Unplug unused devices", "Use only old appliances"],
+            answer: "Unplug unused devices"
         }
     ];
 
@@ -39,20 +102,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const quizResult = document.getElementById("quiz-result");
 
     function loadQuiz() {
-        const currentQuestion = quizData[currentQuestionIndex];
-        questionText.textContent = currentQuestion.question;
-        answersList.innerHTML = "";
+        if (currentQuestionIndex < quizData.length) {
+            const currentQuestion = quizData[currentQuestionIndex];
+            questionText.textContent = currentQuestion.question;
+            answersList.innerHTML = "";
 
-        currentQuestion.options.forEach(option => {
-            const li = document.createElement("li");
-            const input = document.createElement("input");
-            input.type = "radio";
-            input.name = "quiz-option";
-            input.value = option;
-            li.appendChild(input);
-            li.appendChild(document.createTextNode(option));
-            answersList.appendChild(li);
-        });
+            currentQuestion.options.forEach(option => {
+                const li = document.createElement("li");
+                const input = document.createElement("input");
+                input.type = "radio";
+                input.name = "quiz-option";
+                input.value = option;
+                li.appendChild(input);
+                li.appendChild(document.createTextNode(option));
+                answersList.appendChild(li);
+            });
+
+            quizResult.textContent = ""; // Clear previous result
+        } else {
+            quizContainer.innerHTML = "<p>Congratulations! You've completed the quiz!</p>";
+        }
     }
 
     submitAnswerBtn.addEventListener("click", () => {
@@ -66,6 +135,11 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 quizResult.textContent = "Oops! Try again.";
             }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                loadQuiz();
+            }, 1000);
         } else {
             quizResult.textContent = "Please select an answer.";
         }
@@ -73,4 +147,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadQuiz();
 });
-
