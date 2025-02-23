@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tips = [
         { 
             text: "Reduce plastic use – Carry reusable bags.", 
-            image: "images/reusable-bags.jpg",
+            image: "images/reusable bags.jpg",
             description: "Plastic bags take hundreds of years to decompose and contribute to pollution. Switching to reusable bags helps reduce plastic waste and environmental damage."
         },
         { 
@@ -40,21 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
             image: "images/eco-shopping.jpg",
             description: "Choosing second-hand or eco-friendly products reduces demand for new resources, minimizes waste, and promotes sustainable consumer habits."
         },
-        { 
-            text: "Use energy-efficient appliances.", 
-            image: "images/energy-efficient.jpg",
-            description: "Energy-efficient appliances consume less power, reduce utility bills, and contribute to a greener environment."
-        },
-        { 
-            text: "Support local and organic products.", 
-            image: "images/local-market.jpg",
-            description: "Buying locally reduces carbon emissions from transportation, supports small businesses, and ensures fresher, pesticide-free food."
-        },
-        { 
-            text: "Reduce meat consumption.", 
-            image: "images/plant-based.jpg",
-            description: "Reducing meat consumption lowers carbon emissions, decreases deforestation, and promotes better personal health."
-        }
     ];
 
     // Random Tip Generator
