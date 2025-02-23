@@ -70,22 +70,26 @@ const quizQuestions = [
     }
 ];
 
-// Function to display quiz questions
+// Display "Loading..." before questions load
 function displayQuiz() {
     const quizContainer = document.getElementById("quiz-container");
-    quizContainer.innerHTML = "";
+    quizContainer.innerHTML = "<p>Loading quiz...</p>"; // Prevent layout shift
 
-    quizQuestions.forEach((q, index) => {
-        const questionDiv = document.createElement("div");
-        questionDiv.classList.add("quiz-question");
+    setTimeout(() => {
+        quizContainer.innerHTML = ""; // Remove "Loading..."
 
-        let optionsHtml = q.options.map(option => 
-            `<label><input type="radio" name="question${index}" value="${option}"> ${option}</label><br>`
-        ).join("");
+        quizQuestions.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("quiz-question");
 
-        questionDiv.innerHTML = `<p><strong>${q.question}</strong></p>${optionsHtml}`;
-        quizContainer.appendChild(questionDiv);
-    });
+            let optionsHtml = q.options.map(option =>
+                `<label><input type="radio" name="question${index}" value="${option}"> ${option}</label>`
+            ).join("");
+
+            questionDiv.innerHTML = `<p><strong>${q.question}</strong></p>${optionsHtml}`;
+            quizContainer.appendChild(questionDiv);
+        });
+    }, 500); // Small delay to prevent jumping
 }
 
 // Function to check quiz answers
