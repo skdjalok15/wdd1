@@ -13,12 +13,6 @@ const products = [
         price: "$15"
     },
     {
-        name: "Bamboo Toothbrush",
-        image: "images/bamboo-toothbrush.jpg",
-        description: "Eco-friendly alternative to plastic toothbrushes.",
-        price: "$5"
-    },
-    {
         name: "Compostable Plates",
         image: "images/compostable-plates.jpg",
         description: "Perfect for eco-friendly parties, fully biodegradable.",
@@ -61,17 +55,17 @@ function showDetails(index) {
 const quizQuestions = [
     {
         question: "Which of these materials is biodegradable?",
-        options: ["Plastic", "Glass", "Bamboo", "Aluminum"],
+        options: ["Plastic", "Glass", "Bamboo",],
         correct: "Bamboo"
     },
     {
         question: "What is the best way to reduce plastic waste?",
-        options: ["Use more plastic", "Recycle only", "Use reusable items", "Burn plastic"],
+        options: ["Use more plastic", "Recycle only", "Use reusable items",],
         correct: "Use reusable items"
     },
     {
         question: "What energy source is renewable?",
-        options: ["Coal", "Nuclear", "Solar", "Oil"],
+        options: ["Coal", "Nuclear", "Solar",],
         correct: "Solar"
     }
 ];
