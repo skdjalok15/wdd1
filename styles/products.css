@@ -83,29 +83,29 @@ footer {
     color: white;
 }
 
-/* ✅ Quiz Styling Fixes */
+/* Fix Quiz Layout Shift */
 #quiz-section {
-    margin: 30px auto;
-    padding: 20px;
-    background: white;
-    width: 80%;
-    max-width: 600px;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 300px; /* Reserve space to prevent jumping */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.quiz-question {
-    margin-bottom: 15px;
-    text-align: left; /* Ensures readable alignment */
+/* Ensure quiz questions do not cause shifts */
+#quiz-container {
+    width: 100%;
+    min-height: 200px; /* Reserve space for questions */
+    text-align: left;
 }
 
-#quiz-result {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #2c6e49;
+/* Style for quiz options */
+.quiz-question label {
+    display: block;
+    margin: 5px 0;
+}
+
+/* Prevent button shift */
+#submit-quiz {
+    margin-top: 15px;
 }
