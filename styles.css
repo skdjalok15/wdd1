@@ -16,7 +16,6 @@ header {
 }
 
 .logo {
-    width: 100px;
     display: block;
     margin: 0 auto;
 }
@@ -56,15 +55,6 @@ h2 {
     color: #4CAF50;
 }
 
-/* Lists */
-ul, ol {
-    padding-left: 20px;
-}
-
-li {
-    margin: 10px 0;
-}
-
 /* Quiz */
 .quiz-options {
     display: flex;
@@ -97,8 +87,6 @@ li {
 /* Quiz Image */
 .quiz-image {
     display: block;
-    width: 100%;
-    max-width: 400px;
     margin: 20px auto;
     border-radius: 5px;
 }
