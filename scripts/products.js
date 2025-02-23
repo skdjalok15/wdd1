@@ -35,8 +35,13 @@ function displayProducts() {
         const productDiv = document.createElement("div");
         productDiv.classList.add("product");
 
-        productDiv.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
+        // Preload image to prevent layout shifts
+        const img = new Image();
+        img.src = product.image;
+        img.alt = product.name;
+        img.onload = () => productDiv.appendChild(img); // Append image after loading
+
+        productDiv.innerHTML += `
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p class="price">${product.price}</p>
@@ -51,10 +56,6 @@ function displayProducts() {
 function showDetails(index) {
     alert(`Product: ${products[index].name}\nPrice: ${products[index].price}\n\n${products[index].description}`);
 }
-
-// Load products when the page loads
-document.addEventListener("DOMContentLoaded", displayProducts);
-
 
 // **Quiz Section**
 const quizQuestions = [
@@ -96,19 +97,29 @@ function displayQuiz() {
 // Function to check quiz answers
 function checkQuizAnswers() {
     let score = 0;
+    let unanswered = 0;
 
     quizQuestions.forEach((q, index) => {
         const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
 
-        if (selectedOption && selectedOption.value === q.correct) {
-            score++;
+        if (selectedOption) {
+            if (selectedOption.value === q.correct) {
+                score++;
+            }
+        } else {
+            unanswered++;
         }
     });
 
-    document.getElementById("quiz-result").textContent = `You got ${score} out of ${quizQuestions.length} correct! 🎉`;
+    let resultMessage = `You got ${score} out of ${quizQuestions.length} correct! 🎉`;
+    if (unanswered > 0) {
+        resultMessage += `\n\n⚠️ You left ${unanswered} question(s) unanswered.`;
+    }
+
+    document.getElementById("quiz-result").textContent = resultMessage;
 }
 
-// Load quiz when the page loads
+// Load products and quiz when the page loads
 document.addEventListener("DOMContentLoaded", () => {
     displayProducts();
     displayQuiz();
