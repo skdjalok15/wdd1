@@ -8,7 +8,7 @@ const products = [
     },
     {
         name: "Reusable Water Bottle",
-        image: "images/water-bottle.jpg",
+        image: "images/water-bottle.png",
         description: "Reduce plastic waste by using a durable, refillable bottle.",
         price: "$15"
     },
